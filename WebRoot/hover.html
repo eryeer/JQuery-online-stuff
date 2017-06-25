@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	jQuery(function($){
+//光标移入div，字体变为红色，移出后变蓝色
+	$("#d2").hover(function(){
+		$(this).css("color","red");
+	},function(){
+		$(this).css("color","blue");
+	});
+//光标移入和移出图片时，切换div的显示与隐藏
+	$("#d2").hover(function(){
+		$("img").toggle("normal");
+	});
+//有5张图片，默认显示第1张，点击切换到第2张，再点击切换到第3张，依次类推，循环轮播
+	$("body").on("click","img",function(){
+		$(this).toggle(function(){
+			this.src="images/2.jpg";
+		},function(){
+			this.src="images/3.jpg";
+		},function(){
+			this.src="images/4.jpg";
+		},function(){
+			this.src="images/5.jpg";
+		},function(){
+			this.src="images/1.jpg";
+		});
+	});
+	
+		/* $("#d1").hover(function(){
+			console.log("进来了");
+		},function(){
+			console.log("出去了");
+		}); */
+	/* 	$("#d1").mouseover(function(){
+			console.log("进来了");
+		}).mouseout(function(){
+			console.log("出去了");
+		}); */
+			$("#d1").mouseenter(function(){
+			console.log("进来了");
+		}).mouseleave(function(){
+			console.log("出去了");
+		});
+	});
+</script>
+</head>
+<body>
+<div id="d2">我是小层层</div>
+<img src="images/1.jpg" width="50%" id="mypic"/><br/><br/>
+<div id="d1" style="border:1px solid red;height:300px;width:300px;margin: 200px auto auto 300px;">
+		<input value="来呀来呀" type="button" style="width:100px; height:100px;margin:100px;" />
+</div>
+</body>
+</html>

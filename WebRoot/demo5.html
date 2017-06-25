@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+//向下拉框的最后添加广州（内部插入）
+	//$("select").append("<option value='广州'>广州</option>");
+	$("<option>广州</option>").appendTo("select");
+//在上海的前面添加北京（外部插入）
+	//$("option[value=上海]").before("<option value='北京'>北京</option>");
+	$("<option>北京</option>").insertBefore("[value=上海]");
+});
+</script>
+
+</head>
+<body>
+<select>
+	<option value="上海">上海</option>
+</select>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+	$("#toRightBtn").on("click",function(){
+		$("#leftSelect").children(":selected").appendTo("#rightSelect");
+	});
+	$("#toRightAllBtn").on("click",function(){
+		$("#leftSelect").children().appendTo("#rightSelect");
+	});
+	$("#toLeftBtn").on("click",function(){
+		$("#rightSelect").children(":selected").appendTo("#leftSelect");
+	});
+	$("#toLeftAllBtn").on("click",function(){
+		$("#rightSelect").children().appendTo("#leftSelect");
+	});
+	
+	$("#rightSelect").on("dblclick",function(event){
+		$(event.target).appendTo("#leftSelect");
+	});
+	
+	$("#leftSelect").on("dblclick",function(event){
+		$(event.target).appendTo("#rightSelect");
+	});
+	
+	$(":button").on("click",function(){
+		$(":selected").removeProp("selected");
+	});
+	
+	$("select").on("dblclick",function(){
+		$(":selected").removeProp("selected");
+	});
+});
+</script>
+
+</head>
+<body>
+<table align="center" style="margin-top:200px;">
+	<tr>
+		<td>
+			<!-- 左边选择框 -->
+			<select id="leftSelect" multiple style="width:100px;height:200px">
+				<option value="北京">北京</option>
+				<option value="上海">上海</option>
+				<option value="南京">南京</option>
+				<option value="杭州">杭州</option>
+				<option value="深圳">深圳</option>
+			</select>
+		</td>
+		<td>
+			<style>input{width:100px;margin:5px 10px;}</style>
+			<input type="button" id="toRightBtn" value="选中的右移"/><br/>
+			<input type="button" id="toRightAllBtn" value="全部右移"/><br/>
+			<input type="button" id="toLeftBtn" value="选中的左移"/><br/>
+			<input type="button" id="toLeftAllBtn" value="全部左移"/><br/>
+		</td>
+		<td>
+			<!-- 右边选择框 -->
+			<select id="rightSelect" multiple style="width:100px;height:200px">
+				<option value="郑州">郑州</option>
+			</select>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

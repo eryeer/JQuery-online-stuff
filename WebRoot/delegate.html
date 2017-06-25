@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+/*页面加载完成事件：相当于jQuery(document).ready(fn);****/
+	jQuery(function($) {
+		//1．在添加按钮上绑定单击事件
+		$("#addBtn").click(function() {
+			//2．在事件中，先获取表单的数据
+			var username = $("input[name=username]").val();
+			var email = $("input[name=email]").val();
+			var tel = $("input[name=tel]").val();
+			//3．将数据拼成tr，并转成jQuery对象
+			$(
+				"<tr>\
+					<td>" + username + "</td>\
+					<td>" + email + "</td>\
+					<td>" + tel + "</td>\
+					<td><a href='javascript:;'>删除</a></td>\
+				</tr>"
+			)
+			.appendTo("#list");
+		});
+		$("#list").on("click","a",function(){
+			$(this).closest("tr").remove();
+		});
+		
+		// 普通方式绑定单击事件，后来添加的行无法删除
+		/* $("#list a").click(function() {
+			$(this).closest("tr").remove();
+		}); */
+		
+		// 使用事件的委派方式绑定事件
+		/* $("#list a").live("click", function() {
+			$(this).closest("tr").remove();
+		})
+		.die("click") // 解除单击事件的委派
+		; */
+		
+		// 使用delegate方法代替live完成事件委派
+		// #list:接收委派的元素  a:需要委派的选择器  click:委派的事件
+		/* $("#list").delegate("a", "click", function() {
+			$(this).closest("tr").remove();
+		})
+		.undelegate("a", "click") // 解除事件委派
+		; */
+	});
+</script>
+</head>
+<body>
+<div align="center">
+	<h2>添加用户</h2>
+	<form>
+		<table>
+			<tr>
+				<td align="right">姓名：</td>
+				<td><input name="username" /></td>
+			</tr>
+			<tr>
+				<td align="right">邮箱：</td>
+				<td><input name="email" /></td>
+			</tr>
+			<tr>
+				<td align="right">电话：</td>
+				<td><input name="tel" /></td>
+			</tr>
+			<tr>
+				<td align="right" colspan="2">
+					<input id="addBtn" type="button" value=" 添 加 " />
+					<input type="reset" value=" 重 置 " />
+				</td>
+			</tr>
+		</table>
+	</form>
+	<hr/><br/>
+	<style type="text/css">
+		body{background-color: #f1f1f1;}div{margin-top:50px;}
+		#list {width: 500px;border-collapse: collapse;}
+		td,th{font-size: 14px;}
+		#list th,#list td {text-align: center;border:1px solid black;}
+	</style>
+	<table id="list">
+		<tr>
+			<th width="100px">姓名</th>
+			<th width="180px">邮箱</th>
+			<th width="130px">电话</th>
+			<th>操作</th>
+		</tr>
+		<tr>
+			<td>伊一</td>
+			<td>yiyi@itcast.cn</td>
+			<td>11111111111</td>
+			<td><a href="javascript:;">删除</a></td>
+		</tr>
+		<tr>
+			<td>牛二</td>
+			<td>niuer@itcast.cn</td>
+			<td>22222222222</td>
+			<td><a href="javascript:;">删除</a></td>
+		</tr>
+		<tr>
+			<td>张三</td>
+			<td>zhangsan@itcast.cn</td>
+			<td>33333333333</td>
+			<td><a href="javascript:;">删除</a></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

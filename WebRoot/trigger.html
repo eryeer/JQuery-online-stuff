@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+	jQuery(function($){
+//给“提交”按钮绑定一次性单击事件，让表单只能提交一次
+		$("#submitBtn").one("click",function(){
+			$("form").submit();
+		});
+//给输入框绑定一个获取焦点事件：在输入框后面添加一个元素，并在1秒内淡出
+		$("form").next().on("focus",function(){
+			$(this).after("<span>ring</span>").next().fadeOut(1000);
+		})
+//点击ID为trigger的按钮，使用trigger函数触发输入框的获取焦点事件
+		$("#trigger").click(function(){
+			$("form").next().trigger("focus");
+		});
+//点击ID为triggerHandler的按钮，使用triggerHandler函数触发输入框的获取焦点事件
+		$("#triggerHandler").click(function(){
+			$("form").next().triggerHandler("focus");
+		});
+	});
+</script>
+</head>
+<body>
+<form action="javascript:alert('Form has be submited!');">
+	<input type="button" id="submitBtn" value="Submit" />
+</form>
+<input value="To Be Focused" /><br /><br />
+<button id="trigger">$("input").trigger("focus")</button>
+<button id="triggerHandler">$("input").triggerHandler("focus")</button>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+//将id为p1的节点，替换成id为p2的节点
+	//$("#p1").replaceWith($("#p2"));
+//给id为p2的节点和它的子节点分别绑定一个单击事件
+	/* $("#p2").on("click",function(){
+		alert("parent");
+	}).children().on("click",function(){
+		alert("childnode");
+	}); */
+//将id为p1的节点，替换成id为p2的节点，保留原来的p2节点
+	$("#p2").clone().replaceAll("#p1");
+//将id为p1的节点，替换成id为p2的节点，保留原来的p2节点和p2节点的事件
+	$("#p2").on("click",function(){
+		alert("parent");
+	})
+	.children()
+	.on("click",function(){
+		alert("childnode");
+	})
+	.clone(true)
+	.replaceAll("#p1");
+//将id为p1的节点，替换成id为p2的节点，保留原来的p2节点和p2节点的事件，但不包含p2节点的子节点的事件
+});
+</script>
+
+</head>
+<body>
+<div id="mydiv">
+	<p id="p1">AAAAAAAAAA</p>
+</div>
+<p id="p2">BBBBBBBBBB<a href="#">CCCCCCCCCC</a></p>
+</body>
+</html>

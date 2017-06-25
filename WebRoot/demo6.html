@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+//清空下拉框
+	//$("select").empty();
+//分别使用detach和remove 删除带有change事件的select标签，再将select 重新加入body 查看事件是否存在？
+	$("select").on("click",function(){
+		alert(this.value);
+	})
+	//.remove()
+	.detach()
+	.appendTo("body");
+});
+</script>
+
+</head>
+<body>
+<select id="city">
+	<option value="北京">北京</option>
+	<option value="上海">上海</option>
+	<option value="广州">广州</option>
+</select>
+</body>
+</html>

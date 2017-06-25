@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="./js/jquery-1.8.3.js"></script>
+<script type="text/javascript">
+jQuery(function($){
+	$("#selectAllCb").on("click",function(){
+		$("[name=hobby]").prop("checked",this.checked);
+	});
+	$("#selectReverseBtn").on("click",function(){
+		$("[name=hobby]").prop("checked",function(i,oldValue){
+			return !oldValue;
+		});
+	})
+	$("[name=hobby]").on("click",function(){
+		$("#selectAllCb").prop("checked",function(){
+			return !$("[name=hobby]").is(":not(:checked)");
+		
+		});
+	});
+});
+</script>
+
+</head>
+<body>
+<input type="checkbox" id="selectAllCb" /> 全选/全不选
+<input type="button" id="selectReverseBtn" value="反选" />
+<br/><br/>
+<input type="checkbox" name="hobby" value="足球" />足球
+<input type="checkbox" name="hobby" value="篮球" />篮球
+<input type="checkbox" name="hobby" value="游泳" />游泳
+<input type="checkbox" name="hobby" value="唱歌" />唱歌
+</body>
+</html>
